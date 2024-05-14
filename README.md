@@ -36,3 +36,5 @@ une archive à envoyer via wetransfer.
 Vous avez jusqu’au lundi 20 Mai 2024 inclus pour me communiquer votre rendu.
 Vous pourrez alors me communiquer ceci par mail à l’adresse
 theau.debureau.pro@gmail.com
+
+sudo systemctl restart apache2
