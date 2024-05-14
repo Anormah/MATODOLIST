@@ -1,0 +1,31 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Manager</title>
+    <style>
+        .high { color: red; }
+        .normal { color: black; }
+        .low { color: green; }
+        .overdue { text-decoration: line-through; }
+    </style>
+</head>
+<body>
+    <form action="add_task.php" method="post">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="description">Description:</label><br>
+        <input type="text" id="description" name="description"><br>
+        <label for="priority">Priority:</label><br>
+        <select id="priority" name="priority">
+            <option value="low">Low</option>
+            <option value="normal">Normal</option>
+            <option value="high">High</option>
+        </select><br>
+        <label for="deadline">Deadline:</label><br>
+        <input type="date" id="deadline" name="deadline"><br>
+        <input type="submit" value="Add Task">
+    </form>
+    <?php include 'list_tasks.php'; ?>
+</body>
+</html>
