@@ -12,14 +12,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; /* Ensure the content stacks vertically */
+    flex-direction: column;
     min-height: 100vh;
 }
 
 h1 {
     text-align: center;
     color: #444;
-    margin-bottom: 20px; /* Add space below the title */
+    margin-bottom: 20px;
 }
 
 form {
@@ -39,7 +39,10 @@ label {
     color: #555;
 }
 
-input[type="text"], textarea, select, input[type="date"] {
+input[type="text"],
+textarea,
+select,
+input[type="date"] {
     width: 100%;
     padding: 0.5em;
     margin-top: 0.5em;
