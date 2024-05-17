@@ -1,0 +1,127 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Ensure the content stacks vertically */
+    min-height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    color: #444;
+    margin-bottom: 20px; /* Add space below the title */
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2em;
+    max-width: 400px;
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin-top: 1em;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"], textarea, select, input[type="date"] {
+    width: 100%;
+    padding: 0.5em;
+    margin-top: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #333;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input[type="submit"] {
+    display: block;
+    width: 100%;
+    margin-top: 1.5em;
+    padding: 0.75em 1em;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+#task-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 2em;
+    max-width: 400px;
+    width: 100%;
+}
+
+#task-list li {
+    background-color: #fff;
+    margin-bottom: 1em;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+#task-list li:hover {
+    background-color: #f9f9f9;
+}
+
+#task-list li[data-priority="low"] {
+    color: green;
+}
+
+#task-list li[data-priority="normal"] {
+    color: black;
+}
+
+#task-list li[data-priority="high"] {
+    color: red;
+}
+
+#task-list li:hover::after {
+    content: attr(data-description);
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 1em;
+    z-index: 1;
+    white-space: pre-wrap;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 0.5em;
+}
+
+#task-list li[data-checked="true"] label {
+    text-decoration: line-through;
+}
