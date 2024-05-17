@@ -1,6 +1,6 @@
 <?php
-// Chemin vers le fichier CSV
-$file = 'tasks.csv';
+// Chemin vers le fichier JSON (vous pouvez utiliser CSV si nécessaire)
+$file = 'tasks.json';
 
 // Vérifie si le formulaire a été soumis
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
