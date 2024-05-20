@@ -10,7 +10,70 @@ body {
     color: #333;
     padding: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: center;body {
+        font-family: Arial, sans-serif;
+    }
+    
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    
+    form {
+        margin: 20px 0;
+    }
+    
+    #task-list {
+        list-style-type: none;
+        padding: 0;
+    }
+    
+    #task-list li {
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid #ddd;
+        position: relative;
+    }
+    
+    #task-list li[data-priority="low"] .task-title {
+        color: green;
+    }
+    
+    #task-list li[data-priority="normal"] .task-title {
+        color: black;
+    }
+    
+    #task-list li[data-priority="high"] .task-title {
+        color: red;
+    }
+    
+    #task-list li:hover::after {
+        content: attr(data-description);
+        position: absolute;
+        left: 0;
+        top: 100%;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        background: #f9f9f9;
+    }
+    
+    .task-title.checked {
+        text-decoration: line-through;
+    }
+    
+    input[type="submit"] {
+        background: #007BFF;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    input[type="submit"]:hover {
+        background: #0056b3;
+    }
     align-items: center;
     flex-direction: column;
     min-height: 100vh;

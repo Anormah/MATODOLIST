@@ -7,28 +7,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Gestionnaire de tâches</h1>
-    <form id="task-form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-        <label for="title">Titre:</label>
-        <input type="text" id="title" name="title" required>
-
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" required></textarea>
-
-        <label for="priority">Priorité:</label>
-        <select id="priority" name="priority" required>
-            <option value="low">Basse</option>
-            <option value="normal">Normale</option>
-            <option value="high">Haute</option>
-        </select>
-
-        <label for="deadline">Date de fin:</label>
-        <input type="date" id="deadline" name="deadline" required>
-
-        <input type="submit" value="Ajouter la tâche">
-    </form>
-
-    <form id="task-list-form" method="post" action="index.php">
+    <h1>MA TODOLIST :)</h1>
+    <form id="task-check-form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
         <ul id="task-list">
             <?php foreach ($tasks as $index => $task): ?>
                 <li data-priority="<?= $task['priority'] ?>" data-description="<?= htmlspecialchars($task['description'], ENT_QUOTES) ?>" data-checked="<?= $task['checked'] === 'true' ? 'true' : 'false' ?>">
@@ -42,7 +22,34 @@
                 </li>
             <?php endforeach; ?>
         </ul>
-        <input type="submit" value="Supprimer les tâches sélectionnées">
     </form>
+    <form id="task-delete-form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <input type="submit" value="Supprimer les tâches sélectionnées">
+        <?php foreach ($tasks as $index => $task): ?>
+            <?php if ($task['checked'] === 'true'): ?>
+                <input type="hidden" name="delete[]" value="<?= $index ?>">
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </form>
+    <form id="task-form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <h1>Nouvelle tache</h1>
+        <label for="title">Titre:</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+
+        <label for="deadline">Date de fin:</label>
+        <input type="date" id="deadline" name="deadline" required>
+
+        <label for="priority">Priorité:</label>
+        <select id="priority" name="priority" required>
+            <option value="low">Basse</option>
+            <option value="normal">Normale</option>
+            <option value="high">Haute</option>
+        </select>
+
+        <input type="submit" value="Ajouter la tâche">
+    </form>  
 </body>
 </html>
