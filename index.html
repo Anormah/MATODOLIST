@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Gestionnaire de tâches</h1>
-    <form id="task-form" method="post" action="index.php">
+    <form id="task-form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
         <label for="title">Titre:</label>
         <input type="text" id="title" name="title" required>
 
@@ -28,19 +28,18 @@
         <input type="submit" value="Ajouter la tâche">
     </form>
 
-    <form method="post" action="index.php">
+    <form id="task-list-form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
         <ul id="task-list">
             <?php foreach ($tasks as $index => $task): ?>
-            <li data-priority="<?= $task['priority'] ?>" data-description="<?= htmlspecialchars($task['description'], ENT_QUOTES) ?>" data-checked="<?= $task['checked'] === 'true' ? 'true' : 'false' ?>">
-                <input type="checkbox" id="task-<?= $index ?>" name="delete[]" value="<?= $index ?>" <?= $task['checked'] === 'true' ? 'checked' : '' ?>>
-                <label for="task-<?= $index ?>">
-                    <span class="task-title <?= $task['checked'] === 'true' ? 'checked' : '' ?>">
-                        <?= htmlspecialchars($task['title'], ENT_QUOTES) ?>
-                        <?= strtotime($task['deadline']) < time() ? '- retard' : '' ?>
-                    </span>
-                </label>
-            </li>
-            
+                <li data-priority="<?= $task[2] ?>" data-description="<?= htmlspecialchars($task[1], ENT_QUOTES) ?>" data-checked="<?= $task[4] === 'true' ? 'true' : 'false' ?>">
+                    <input type="checkbox" id="task-<?= $index ?>" name="delete[]" value="<?= $index ?>" <?= $task[4] === 'true' ? 'checked' : '' ?> onchange="this.form.submit()">
+                    <label for="task-<?= $index ?>">
+                        <span class="task-title <?= $task[4] === 'true' ? 'checked' : '' ?>">
+                            <?= htmlspecialchars($task[0], ENT_QUOTES) ?>
+                            <?= strtotime($task[3]) < time() ? '- retard' : '' ?>
+                        </span>
+                    </label>
+                </li>
             <?php endforeach; ?>
         </ul>
         <input type="submit" value="Supprimer les tâches sélectionnées">
