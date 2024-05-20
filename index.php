@@ -47,6 +47,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         writeTasks($file, $tasks);
     }
 
+    // Met à jour l'état des tâches cochées
+    if (isset($_POST['checked'])) {
+        foreach ($_POST['checked'] as $checkedIndex) {
+            $tasks[$checkedIndex]['checked'] = 'true';
+        }
+        writeTasks($file, $tasks);
+    }
+
     // Supprime les tâches cochées
     if (isset($_POST['delete'])) {
         foreach ($_POST['delete'] as $deleteIndex) {
@@ -63,12 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Récupère les tâches existantes
 $tasks = readTasks($file);
-
-// Génère les options pour la liste déroulante de l'année
-$yearOptions = '';
-for ($i = date('Y'); $i <= date('Y') + 5; $i++) {
-    $yearOptions .= "<option value=\"$i\">$i</option>";
-}
 
 // Inclut le fichier HTML
 include 'index.html';

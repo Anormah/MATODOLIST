@@ -28,15 +28,15 @@
         <input type="submit" value="Ajouter la tâche">
     </form>
 
-    <form id="task-list-form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <form id="task-list-form" method="post" action="index.php">
         <ul id="task-list">
             <?php foreach ($tasks as $index => $task): ?>
-                <li data-priority="<?= $task[2] ?>" data-description="<?= htmlspecialchars($task[1], ENT_QUOTES) ?>" data-checked="<?= $task[4] === 'true' ? 'true' : 'false' ?>">
-                    <input type="checkbox" id="task-<?= $index ?>" name="delete[]" value="<?= $index ?>" <?= $task[4] === 'true' ? 'checked' : '' ?> onchange="this.form.submit()">
+                <li data-priority="<?= $task['priority'] ?>" data-description="<?= htmlspecialchars($task['description'], ENT_QUOTES) ?>" data-checked="<?= $task['checked'] === 'true' ? 'true' : 'false' ?>">
+                    <input type="checkbox" id="task-<?= $index ?>" name="checked[]" value="<?= $index ?>" <?= $task['checked'] === 'true' ? 'checked' : '' ?> onchange="this.form.submit()">
                     <label for="task-<?= $index ?>">
-                        <span class="task-title <?= $task[4] === 'true' ? 'checked' : '' ?>">
-                            <?= htmlspecialchars($task[0], ENT_QUOTES) ?>
-                            <?= strtotime($task[3]) < time() ? '- retard' : '' ?>
+                        <span class="task-title <?= $task['checked'] === 'true' ? 'checked' : '' ?>">
+                            <?= htmlspecialchars($task['title'], ENT_QUOTES) ?>
+                            <?= strtotime($task['deadline']) < time() ? '- retard' : '' ?>
                         </span>
                     </label>
                 </li>
