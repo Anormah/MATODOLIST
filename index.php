@@ -34,6 +34,15 @@ function writeTasks($file, $tasks) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tasks = readTasks($file);
 
+    // Met à jour l'état des tâches cochées
+    if (isset($_POST['checked'])) {
+        $checkedIndexes = array_map('intval', $_POST['checked']); // Convertit les index en entiers
+        foreach ($tasks as $index => &$task) {
+            $task['checked'] = in_array($index, $checkedIndexes) ? 'true' : 'false';
+        }
+        writeTasks($file, $tasks);
+    }
+
     // Ajoute une nouvelle tâche
     if (isset($_POST['title'], $_POST['description'], $_POST['priority'], $_POST['deadline'])) {
         $newTask = [
@@ -44,14 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'false'
         ];
         $tasks[] = $newTask;
-        writeTasks($file, $tasks);
-    }
-
-    // Met à jour l'état des tâches cochées
-    if (isset($_POST['checked'])) {
-        foreach ($_POST['checked'] as $checkedIndex) {
-            $tasks[$checkedIndex]['checked'] = 'true';
-        }
         writeTasks($file, $tasks);
     }
 

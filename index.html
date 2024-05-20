@@ -32,7 +32,7 @@
         <ul id="task-list">
             <?php foreach ($tasks as $index => $task): ?>
                 <li data-priority="<?= $task['priority'] ?>" data-description="<?= htmlspecialchars($task['description'], ENT_QUOTES) ?>" data-checked="<?= $task['checked'] === 'true' ? 'true' : 'false' ?>">
-                    <input type="checkbox" id="task-<?= $index ?>" name="checked[]" value="<?= $index ?>" <?= $task['checked'] === 'true' ? 'checked' : '' ?> onchange="this.form.submit()">
+                    <input type="checkbox" id="task-<?= $index ?>" name="checked[]" value="<?= $index ?>" <?= $task['checked'] === 'true' ? 'checked' : '' ?>>
                     <label for="task-<?= $index ?>">
                         <span class="task-title <?= $task['checked'] === 'true' ? 'checked' : '' ?>">
                             <?= htmlspecialchars($task['title'], ENT_QUOTES) ?>
