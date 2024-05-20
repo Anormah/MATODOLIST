@@ -3,10 +3,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Chemin vers le fichier CSV
 $file = 'tasks.csv';
 
-// Fonction pour lire les tâches depuis le fichier CSV
 function readTasks($file) {
     $tasks = [];
     if (file_exists($file)) {
@@ -25,7 +23,6 @@ function readTasks($file) {
     return $tasks;
 }
 
-// Fonction pour écrire les tâches dans le fichier CSV
 function writeTasks($file, $tasks) {
     $fileHandle = fopen($file, 'w');
     foreach ($tasks as $task) {
@@ -34,7 +31,6 @@ function writeTasks($file, $tasks) {
     fclose($fileHandle);
 }
 
-// Vérifie si le formulaire a été soumis
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tasks = readTasks($file);
 
@@ -44,16 +40,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         foreach ($deleteIndexes as $deleteIndex) {
             unset($tasks[$deleteIndex]);
         }
-        $tasks = array_values($tasks); // Réindexe le tableau
+        $tasks = array_values($tasks); 
         writeTasks($file, $tasks);
 
-        // Redirige pour éviter les soumissions de formulaire en double
         header('Location: ' . $_SERVER['REQUEST_URI']);
         exit;
     }
 
-    // Met à jour l'état des tâches cochées et ajoute de nouvelles tâches si nécessaire
-    $checkedIndexes = isset($_POST['checked']) ? array_map('intval', $_POST['checked']) : []; // Convertit les index en entiers
+    $checkedIndexes = isset($_POST['checked']) ? array_map('intval', $_POST['checked']) : []; 
     foreach ($tasks as $index => &$task) {
         if (in_array($index, $checkedIndexes)) {
             $task['checked'] = 'true';
@@ -63,7 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     writeTasks($file, $tasks);
 
-    // Ajoute une nouvelle tâche
     if (isset($_POST['title'], $_POST['description'], $_POST['priority'], $_POST['deadline'])) {
         $newTask = [
             $_POST['title'],
@@ -75,15 +68,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $tasks[] = $newTask;
         writeTasks($file, $tasks);
 
-        // Redirige pour éviter les soumissions de formulaire en double
         header('Location: ' . $_SERVER['REQUEST_URI']);
         exit;
     }
 }
 
-// Récupère les tâches existantes
 $tasks = readTasks($file);
 
-// Inclut le fichier HTML
 include 'index.html';
 ?>
