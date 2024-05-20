@@ -31,15 +31,16 @@
     <form method="post" action="index.php">
         <ul id="task-list">
             <?php foreach ($tasks as $index => $task): ?>
-                <li data-priority="<?= $task['priority'] ?>" data-description="<?= htmlspecialchars($task['description'], ENT_QUOTES) ?>" data-checked="<?= $task['checked'] === 'true' ? 'true' : 'false' ?>">
-                    <input type="checkbox" id="task-<?= $index ?>" name="delete[]" value="<?= $index ?>" <?= $task['checked'] === 'true' ? 'checked' : '' ?>>
-                    <label for="task-<?= $index ?>">
-                        <span class="task-title <?= $task['checked'] === 'true' ? 'checked' : '' ?>">
-                            <?= htmlspecialchars($task['title'], ENT_QUOTES) ?>
-                            <?= strtotime($task['deadline']) < time() ? '- retard' : '' ?>
-                        </span>
-                    </label>
-                </li>
+            <li data-priority="<?= $task['priority'] ?>" data-description="<?= htmlspecialchars($task['description'], ENT_QUOTES) ?>" data-checked="<?= $task['checked'] === 'true' ? 'true' : 'false' ?>">
+                <input type="checkbox" id="task-<?= $index ?>" name="delete[]" value="<?= $index ?>" <?= $task['checked'] === 'true' ? 'checked' : '' ?>>
+                <label for="task-<?= $index ?>">
+                    <span class="task-title <?= $task['checked'] === 'true' ? 'checked' : '' ?>">
+                        <?= htmlspecialchars($task['title'], ENT_QUOTES) ?>
+                        <?= strtotime($task['deadline']) < time() ? '- retard' : '' ?>
+                    </span>
+                </label>
+            </li>
+            
             <?php endforeach; ?>
         </ul>
         <input type="submit" value="Supprimer les tâches sélectionnées">

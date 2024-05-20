@@ -125,6 +125,7 @@ input[type="submit"]:hover {
     margin-top: 0.5em;
 }
 
-#task-list li[data-checked="true"] label {
+#task-list li[data-checked="true"] .task-title {
     text-decoration: line-through;
+    color: gray;
 }
